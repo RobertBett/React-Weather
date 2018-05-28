@@ -7,28 +7,28 @@ class Spinner extends Component{
 
     render(){
         return(
-        <div className="rocketMan">
-            <div className='body'>
-                <span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                </span>
-            <div className='base'>
-            <span></span>
-            <div className='face'></div>
+            <div className="rocketMan">
+                <div className='body'>
+                    <span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div className='base'>
+                        <span></span>
+                        <div className='face'></div>
+                    </div>
+                </div>
+                <div className='longfazers'>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <h1 className="Loading">Fetching Weather Reports  .........</h1>
             </div>
-            </div>
-            <div className='longfazers'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <h1 className="Loading">Fetching Weather Reports  .........</h1>
-        </div>
-        )
+        );
     }
 }
 
