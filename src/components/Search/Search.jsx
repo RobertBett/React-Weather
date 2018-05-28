@@ -11,11 +11,11 @@ class Search extends Component{
             <main>
                 <div className="bg-video">
                     <video  className="bg-video__content" autoPlay muted loop >
-                        <source src={video} type="video/mp4"/>
+                        <source src={ video } type="video/mp4"/>
                         Your Browser is not supported
                     </video>
                 </div>
-            <img src={logo} className="App-logo" alt="logo" />
+                <img src={ logo } className="App-logo" alt="logo" />
                 <section className="section-book">
                     <div className="row">
                         <div className="book">
@@ -29,8 +29,8 @@ class Search extends Component{
                                         <label className="form__label">City</label>
                                     </div>
                                     <div className="form__group">
-                                      <input type="text" className="form__input" placeholder="Country Code" name="code" required minLength="2" maxLength="2" title="Cannot be blank"/>
-                                      <label className="form__label">Country Code</label>
+                                        <input type="text" className="form__input" placeholder="Country Code" name="code" required minLength="2" maxLength="2" title="Cannot be blank"/>
+                                        <label className="form__label">Country Code</label>
                                     </div>
                                     <div className="form__group">
                                         <button className="green__button green__button--green2"> Search </button>
