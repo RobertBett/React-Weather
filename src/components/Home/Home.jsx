@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import Logo from '../Logo';
 import Spinner from '../Spinner/Spinner';
-import logo from '../../logo.svg';
-import sunny from '../../assets/weather-icons/day.svg';
+import reactLogo from '../../logo.svg';
 import cloudy from '../../assets/weather-icons/rainy-6.svg';
 import snowy from '../../assets/weather-icons/cloudy-day-2.svg';
 import './Home.css';
-
 
 
 class Home extends Component{   
@@ -18,6 +18,24 @@ class Home extends Component{
 
 
     componentWillMount(){
+        Promise.all([
+            axios.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
+        ])
+            .then((res) =>{
+                const response = res[0].data.query;
+                this.setState({
+                    response: response
+                });
+                /* eslint no-console: 2 */
+                console.log(res[0].data.query.results.channel.item.condition.temp);
+                console.log(response);
+            })
+            .catch((err) =>{
+            /* eslint no-console: 1 */
+                console.log(err);
+            });
+
+        
         setTimeout(() => {
             this.loadingDelay();
         }, 3000);
@@ -29,12 +47,17 @@ class Home extends Component{
         });
     }
 
+    getLogo(){
+        /* eslint no-console: 1 */
+        console.log('does this work?');
+        return <Logo />;
+    }
     render(){
         return(
             <div>
                 <header className="header">
                     <div className="header__logo-box">
-                        <img src={ logo } className="App-logo" alt="logo" />
+                        <img src={ reactLogo } className="App-logo" alt="logo" />
                     </div>
                     <div className="header__text-box">
                         <h1 className="heading-primary">
@@ -48,7 +71,7 @@ class Home extends Component{
                         <section className="section-tours">
                             <div className="u-center-text u-margin-bottom-big">
                                 <h2 className="heading-secondary2">
-                                    <span className="tempheading"><img src={ sunny } className="weather-log" alt="cloud icon"/>78&#x2109;</span> &nbsp;
+                                    <span className="tempheading">{this.state.response.results.channel.item.condition.temp}&#x2109;</span> &nbsp;
                                 </h2>
                             </div>
 
@@ -90,7 +113,7 @@ class Home extends Component{
                                     <div className="card">
                                         <div className="card__side card__side--front">
                                             <div className="card__picture">
-                                                <img src={ sunny } className="weather-logo" alt="cloud icon"/>
+                                                <Logo condition={ 'Sunny' } />
                                             </div>
                                             <div className="card__box">
                                                 <h4 className="card__heading">
@@ -168,7 +191,7 @@ class Home extends Component{
                                             <div className="card__box">
                                                 <h4 className="card__heading">
                                                     <span className="card__heading-span card__heading-span--1">
-                    and the day after that
+                                                      and the day after that
                                                     </span>
                                                 </h4>
                                                 <div className="card__details">
@@ -196,13 +219,12 @@ class Home extends Component{
                                 <div className="col-1-of-3">
                                     <div className="card">
                                         <div className="card__side card__side--front">
-                                            <div className="card__picture">
-                        &nbsp;
+                                            <div className="card__picture"> &nbsp;
                                             </div>
                                             <div className="card__box">
                                                 <h4 className="card__heading">
                                                     <span className="card__heading-span card__heading-span--2">
-                            and the day after that
+                                                        and the day after that
                                                     </span>
                                                 </h4>
                                                 <div className="card__details">
@@ -235,7 +257,7 @@ class Home extends Component{
                                             <div className="card__box">
                                                 <h4 className="card__heading">
                                                     <span className="card__heading-span card__heading-span--3">
-                        and the day after that
+                                                    and the day after that
                                                     </span>
                                                 </h4>
                                                 <div className="card__details">

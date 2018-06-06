@@ -4,7 +4,13 @@ import './Search.css';
 import video from '../../assets/Palm_Trees.mp4';
 
 class Search extends Component{
-    state={}
+    constructor(props){
+        super(props);
+
+        this.state ={
+        };
+    }
+
 
     render(){
         return(
