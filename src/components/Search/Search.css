@@ -96,14 +96,12 @@ font-weight: 700;
 text-transform: uppercase; }
 
 
-.u-margin-bottom-medium {
-margin-bottom: 40px !important; }
 
 .u-margin-bottom-medium2 {
 margin-bottom: 10px !important; }
 
 .form__group:not(:last-child) {
-margin-bottom: 20px; }
+margin-bottom: 5px; }
 .form__group2:not(:last-child) {
 margin-bottom: 0; }
 

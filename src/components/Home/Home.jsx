@@ -19,12 +19,15 @@ class Home extends Component{
 
     componentWillMount(){
         Promise.all([
-            axios.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
+            axios.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22silverspring%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
         ])
             .then((res) =>{
                 const response = res[0].data.query;
+                const location = 'in ' + response.results.channel.location.city + ', ' + response.results.channel.location.region + ', ' + response.results.channel.location.country;
                 this.setState({
-                    response: response
+                    response: response,
+                    location: location
+
                 });
                 /* eslint no-console: 2 */
                 console.log(res[0].data.query.results.channel.item.condition.temp);
@@ -72,6 +75,7 @@ class Home extends Component{
                             <div className="u-center-text u-margin-bottom-big">
                                 <h2 className="heading-secondary2">
                                     <span className="tempheading">{this.state.response.results.channel.item.condition.temp}&#x2109;</span> &nbsp;
+                                    {this.state.location}
                                 </h2>
                             </div>
 
@@ -113,7 +117,7 @@ class Home extends Component{
                                     <div className="card">
                                         <div className="card__side card__side--front">
                                             <div className="card__picture">
-                                                <Logo condition={ 'Sunny' } />
+                                                <Logo condition={ 'Cloudy' } />
                                             </div>
                                             <div className="card__box">
                                                 <h4 className="card__heading">
