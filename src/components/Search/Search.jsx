@@ -8,9 +8,19 @@ class Search extends Component{
         super(props);
 
         this.state ={
+            value: ''
         };
     }
 
+    handleChange(value){
+        this.setState({value});
+        console.log(this.state.value);
+    }
+
+    onSearch(result){
+        /* eslint no-console: 1 */
+        console.log(result);
+    }
 
     render(){
         return(
@@ -30,18 +40,24 @@ class Search extends Component{
                                     <div className="u-margin-bottom-medium">
                                         <h2 className="heading-secondary">React Weather</h2>
                                     </div>
-                                    <div className="form__group">
-                                        <input type="text" className="form__input" placeholder="City" name="city" required minLength="3" title="Cannot be blank"/>
-                                        <label className="form__label">City</label>
-                                    </div>
-                                    <div className="form__group">
-                                        <input type="text" className="form__input" placeholder="Country Code" name="code" required minLength="2" maxLength="2" title="Cannot be blank"/>
-                                        <label className="form__label">Country Code</label>
-                                    </div>
-                                    <div className="form__group">
-                                        <button className="green__button green__button--green2"> Search </button>
-                                        <a href="/home" className="btn-text">Go Back &rarr;</a>
-                                    </div>
+                                    <form onSubmit={ this.onSearch }>
+                                        <div className="form__group">
+                                            <input type="text" className="form__input" placeholder="City" value={ this.state.value }  onChange={ event => this.handleChange(event.target.value) } required minLength="3" title="Cannot be blank"/>
+                                            <label className="form__label">City</label>
+                                        </div>
+                                        <div className="form__group">
+                                            <input type="text" className="form__input" placeholder="Region/State" value={ this.state.value }  onChange={ event => this.handleChange(event.target.value) } required minLength="2" maxLength="2" title="Cannot be blank"/>
+                                            <label className="form__label">Region/State</label>
+                                        </div>
+                                        <div className="form__group">
+                                            <input type="text" className="form__input" placeholder="Country" value={ this.state.value }  onChange={ event => this.handleChange(event.target.value) }required minLength="2" title="Cannot be blank"/>
+                                            <label className="form__label">Country</label>
+                                        </div>
+                                        <div className="form__group">
+                                            <button className="green__button green__button--green2"> Search </button>
+                                            <a href="/home" className="btn-text">Go Back &rarr;</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
           
