@@ -4,25 +4,32 @@ import './Search.css';
 import video from '../../assets/Palm_Trees.mp4';
 
 class Search extends Component{
-    constructor(props){
-        super(props);
-
+    constructor(){
+        super();
         this.state ={
-            value: ''
+            city:'',
+            stateRegion:'',
+            country:''
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
 
-    handleChange(value){
-        this.setState({value});
-        console.log(this.state.value);
+    handleChange(event){
+        this.setState({
+            [event.target.id]: event.target.value,
+        });
     }
 
-    onSearch(result){
+    onSearch(event){
         /* eslint no-console: 1 */
-        console.log(result);
+        event.preventDefault();
+        const { city, stateRegion, country } = this.state;
+        this.props.onSubmit({city, stateRegion, country});
     }
 
     render(){
+        
         return(
             <main>
                 <div className="bg-video">
@@ -42,15 +49,15 @@ class Search extends Component{
                                     </div>
                                     <form onSubmit={ this.onSearch }>
                                         <div className="form__group">
-                                            <input type="text" className="form__input" placeholder="City" value={ this.state.value }  onChange={ event => this.handleChange(event.target.value) } required minLength="3" title="Cannot be blank"/>
+                                            <input id="city" type="text" className="form__input" placeholder="City" value={ this.state.value }  onChange={ this.handleChange } required minLength="3" title="Cannot be blank"/>
                                             <label className="form__label">City</label>
                                         </div>
                                         <div className="form__group">
-                                            <input type="text" className="form__input" placeholder="Region/State" value={ this.state.value }  onChange={ event => this.handleChange(event.target.value) } required minLength="2" maxLength="2" title="Cannot be blank"/>
+                                            <input id="stateRegion" type="text" className="form__input" placeholder="Region/State" value={ this.state.value }  onChange={ this.handleChange } required minLength="2" maxLength="2" title="Cannot be blank"/>
                                             <label className="form__label">Region/State</label>
                                         </div>
                                         <div className="form__group">
-                                            <input type="text" className="form__input" placeholder="Country" value={ this.state.value }  onChange={ event => this.handleChange(event.target.value) }required minLength="2" title="Cannot be blank"/>
+                                            <input id="country" type="text" className="form__input" placeholder="Country" value={ this.state.value }  onChange={ this.handleChange } required minLength="2" title="Cannot be blank"/>
                                             <label className="form__label">Country</label>
                                         </div>
                                         <div className="form__group">

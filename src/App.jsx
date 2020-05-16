@@ -5,19 +5,31 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
-    render() {
-        return (
-            <BrowserRouter>
-                <div className="App">
-                    <Switch>
-                        <Route path='/' exact component={ Search }/>
-                        <Route path='/home' component={ Home }/>
-                        <Route path='/search'component={ Search }/>
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        );
+    constructor(){
+        super();
+
+        this.state={
+            values:{}
+        };
+        this.OnSubmit = this.OnSubmit.bind(this);
     }
+            OnSubmit =(values)=>{
+                console.log(values);
+                this.setState({ values});
+            };
+            render() {
+                return (
+                    <BrowserRouter>
+                        <div className="App">
+                            <Switch>
+                                <Route path='/home' component={ ()=> <Home testValues={ this.state.values } /> }/>
+                                <Route path='/search' render={ () => <Search onSubmit={ this.OnSubmit }/> } />
+                                {/* <Route path='/' exact component={ Search }/> */}
+                            </Switch>
+                        </div>
+                    </BrowserRouter>
+                );
+            }
 }
 
 export default App;

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import Logo from '../Logo';
 import Spinner from '../Spinner/Spinner';
 import reactLogo from '../../logo.svg';
 import cloudy from '../../assets/weather-icons/rainy-6.svg';
 import snowy from '../../assets/weather-icons/cloudy-day-2.svg';
 import './Home.css';
+import dataResponse from '../../assets/dataExample.json';
 
 
 class Home extends Component{   
@@ -18,25 +18,15 @@ class Home extends Component{
 
 
     componentWillMount(){
-        Promise.all([
-            axios.get('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22silverspring%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
-        ])
-            .then((res) =>{
-                const response = res[0].data.query;
-                const location = 'in ' + response.results.channel.location.city + ', ' + response.results.channel.location.region + ', ' + response.results.channel.location.country;
-                this.setState({
-                    response: response,
-                    location: location
 
-                });
-                /* eslint no-console: 2 */
-                console.log(res[0].data.query.results.channel.item.condition.temp);
-                console.log(response);
-            })
-            .catch((err) =>{
-            /* eslint no-console: 1 */
-                console.log(err);
-            });
+        const response = dataResponse;
+        const location = 'in ' + response.location.city + ', ' + response.location.region + ', ' + response.location.country;
+        this.setState({
+            response: response,
+            location: location
+
+        });
+        console.log(response, location);
 
         
         setTimeout(() => {
@@ -74,7 +64,7 @@ class Home extends Component{
                         <section className="section-tours">
                             <div className="u-center-text u-margin-bottom-big">
                                 <h2 className="heading-secondary2">
-                                    <span className="tempheading">{this.state.response.results.channel.item.condition.temp}&#x2109;</span> &nbsp;
+                                    <span className="tempheading">{this.state.response.current_observation.condition.temperature}&#x2109;</span> &nbsp;
                                     {this.state.location}
                                 </h2>
                             </div>

@@ -37,6 +37,6 @@ module.exports = {
         "react/jsx-uses-vars": 1,
         "react/react-in-jsx-scope": 1,
         "react/prefer-es6-class": 1,
-        "react/jsx-no-bind": 1,
+        "no-console": "off",
     }
 };
