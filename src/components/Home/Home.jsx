@@ -4,6 +4,9 @@ import Spinner from '../Spinner/Spinner';
 import reactLogo from '../../logo.svg';
 import cloudy from '../../assets/weather-icons/rainy-6.svg';
 import snowy from '../../assets/weather-icons/cloudy-day-2.svg';
+import day from '../../assets/weather-icons/day.svg';
+import thunder from '../../assets/weather-icons/thunder.svg';
+import weatherSunset from '../../assets/weather-icons/weather_sunset.svg';
 import './Home.css';
 import dataResponse from '../../assets/dataExample.json';
 
@@ -181,6 +184,7 @@ class Home extends Component{
                                     <div className="card">
                                         <div className="card__side card__side--front">
                                             <div className="card__picture">
+                                                <img src={ day } className="weather-logo" alt="sunny"/>
                                             </div>
                                             <div className="card__box">
                                                 <h4 className="card__heading">
@@ -214,6 +218,7 @@ class Home extends Component{
                                     <div className="card">
                                         <div className="card__side card__side--front">
                                             <div className="card__picture"> &nbsp;
+                                                <img src={ thunder } className="weather-logo" alt="thunder"/>
                                             </div>
                                             <div className="card__box">
                                                 <h4 className="card__heading">
@@ -247,6 +252,7 @@ class Home extends Component{
                                     <div className="card">
                                         <div className="card__side card__side--front">
                                             <div className="card__picture">
+                                                <img src={ weatherSunset } className="weather-logo" alt="thunder"/>
                                             </div>
                                             <div className="card__box">
                                                 <h4 className="card__heading">
